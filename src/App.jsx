@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 import React, { useState, useEffect } from 'react';
 
 import Login from './login';
@@ -154,7 +155,7 @@ function App() {
     setLoading(true);
     try {
       for (const task of taskList) {
-        await axios.post("http://localhost:5000/api/tasks", {
+        await axios.post(`${BASE_URL}/api/tasks`, {
           title: task.title,
           description: task.description,
           priority: task.priority,
@@ -182,7 +183,7 @@ function App() {
   const fetchBackendTasks = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/api/tasks", {
+      const response = await axios.get(`${BASE_URL}/api/tasks`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -202,7 +203,7 @@ setBackendTasks(myTasks);
   const handleDeleteTask = async (taskId) => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+      await axios.delete(`${BASE_URL}/api/tasks/${taskId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -232,7 +233,7 @@ setBackendTasks(myTasks);
     if (!editTask) return;
     setEditLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${editTask.id}`, {
+      await axios.put(`${BASE_URL}/api/tasks/${editTask.id}`, {
         title: editTask.title,
         description: editTask.description,
         priority: editTask.priority,
