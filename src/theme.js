@@ -1,17 +1,35 @@
+// theme.js
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#b30000', // Your red brand color
+export const getTheme = (mode) =>
+  createTheme({
+    palette: {
+      mode,
+      primary: {
+        main: '#b30000',
+      },
+      secondary: {
+        main: '#ffffff',
+      },
+      background: {
+        default: mode === 'dark' ? '#121212' : '#f5f5f5',
+        paper: mode === 'dark' ? '#1e1e1e' : '#ffffff',
+      },
+      text: {
+        primary: mode === 'dark' ? '#ffffff' : '#000000',
+        secondary: mode === 'dark' ? '#bbbbbb' : '#333333',
+      },
     },
-    secondary: {
-      main: '#ffffff',
+    typography: {
+      fontFamily: `'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif`,
     },
-    error: {
-      main: '#b30000',
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            borderRadius: 12,
+          },
+        },
+      },
     },
-  },
-});
-
-export default theme;
+  });

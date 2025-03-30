@@ -339,6 +339,20 @@ setBackendTasks(myTasks);
               <Typography variant="subtitle1" color="textSecondary">
                 Log yesterday's tasks (10 AM - 12 PM) and be part of history!
               </Typography>
+              <Button
+    onClick={toggleMode}
+    variant="outlined"
+    color="inherit"
+    sx={{
+      position: 'absolute',
+      top: 16,
+      right: 16,
+      zIndex: 1500,
+      bgcolor: 'background.paper',
+    }}
+  >
+    Toggle Theme
+  </Button>
             </Box>
             <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4 }} spacing={2}>
               {teamMembers.map((member) => (
