@@ -198,6 +198,29 @@ setBackendTasks(myTasks);
     }
   };
   
+  const handleDownloadMyReport = async () => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/last-month`, {
+        responseType: 'blob', // important to handle binary data (PDF)
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      // Create a download link for the PDF
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${currentMember.replace(/\s+/g, '_')}_Last_Month_Tasks.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      setSnackbar({ open: true, message: `❌ Failed to download report: ${error.message}`, severity: 'error' });
+    }
+  };
+  
+
 
   // Delete a task via API
   const handleDeleteTask = async (taskId) => {
@@ -378,9 +401,16 @@ setBackendTasks(myTasks);
               <Typography variant="h5" sx={{ flexGrow: 1 }} color="#b30000">
                 {user}'s Submitted Tasks
               </Typography>
-              <Button variant="contained" color="error" onClick={fetchBackendTasks} disabled={loading}>
-                {loading ? <CircularProgress size={24} color="inherit" /> : 'Refresh'}
-              </Button>
+              <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
+  <Button variant="contained" color="error" onClick={fetchBackendTasks} disabled={loading}>
+    {loading ? <CircularProgress size={24} color="inherit" /> : 'Refresh'}
+  </Button>
+
+  <Button variant="contained" color="error" onClick={handleDownloadMyReport}>
+    Download My Report
+  </Button>
+</Box>
+
             </Box>
             {backendTasks.length > 0 ? (
               <List>
