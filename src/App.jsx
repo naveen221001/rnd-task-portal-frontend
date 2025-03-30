@@ -52,7 +52,7 @@ const teamMembers = [
   { name: 'tanushree roy', role: 'Deputy Manager Technology R&D', username: 'tanushree.roy@vikramsolar.com', gender: 'female' },
 ];
 
-function App() {
+function App({toggleMode}) {
   
     const [token, setToken] = useState('');
     const [user, setUser] = useState('');
