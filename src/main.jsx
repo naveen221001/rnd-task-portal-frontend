@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { PublicClientApplication } from '@azure/msal-browser';
@@ -6,21 +6,19 @@ import { MsalProvider } from '@azure/msal-react';
 import { msalConfig } from './authConfig';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { getTheme } from './theme'; // ✅ dynamic theme function
+import theme from './theme'; // 👈 custom red theme
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
-const Main = () => {
-  const [mode, setMode] = useState('light');
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-  return (
+root.render(
+  <React.StrictMode>
     <MsalProvider instance={msalInstance}>
-      <ThemeProvider theme={getTheme(mode)}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App toggleMode={() => setMode(mode === 'light' ? 'dark' : 'light')} />
+        <App />
       </ThemeProvider>
     </MsalProvider>
-  );
-};
-
-ReactDOM.createRoot(document.getElementById('root')).render(<Main />);
+  </React.StrictMode>
+);
