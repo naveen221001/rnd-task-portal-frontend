@@ -48,7 +48,7 @@ const teamMembers = [
   { name: 'samaresh', role: 'Senior Executive R&D', username: 'samaresh.banerjee@vikramsolar.com', gender: 'male' },
   { name: 'shakya acharya', role: 'Manager R&D', username: 'shakya.acharya@vikramsolar.com', gender: 'male' },
   { name: 'soumya ghosal', role: 'Manager Pre Sales', username: 'soumya.ghosal@vikramsolar.com', gender: 'male' },
-  { name: 'tannu', role: 'Senior Manager R&D', username: 'tannu.barnwal@vikramsolar.com', gender: 'female' },
+  { name: 'tannu', role: 'Senior Manager R&D', username: 'tannu@vikramsolar.com', gender: 'female' },
   { name: 'tanushree roy', role: 'Deputy Manager Technology R&D', username: 'tanushree.roy@vikramsolar.com', gender: 'female' },
 ];
 
